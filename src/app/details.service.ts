@@ -16,7 +16,7 @@ export class DetailsService {
 
   flag:String;
   private baseUrl: string = '/rest/messages';
-  rootURL = 'http://localhost:8080/Check12/rest/login';
+  rootURL = 'http://localhost:8080/Cummins/rest/login';
 
   obj:any;
   subject:any;
@@ -24,14 +24,14 @@ export class DetailsService {
     email:new FormControl(''),
     pass: new FormControl('')
   })
-  constructor(private http: HttpClient) { }
+  constructor(public http: HttpClient) { }
 
   check(data,who)
   {
     // let resp = this.form.value;
     console.log(data.email);
     console.log(data.pass);
-    this.obj = this.http.get(this.rootURL+'?who='+who+'?cno='+data.cno+'&pass='+data.pass);
+    this.obj = this.http.get(this.rootURL+'?who='+who+'&cno='+data.cno+'&pass='+data.pass);
     this.flag = JSON.parse(this.obj);
     if(this.flag=='1')
     {
